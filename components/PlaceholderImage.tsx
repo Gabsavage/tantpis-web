@@ -96,10 +96,10 @@ export default async function PlaceholderImage({
       />
       {!hideLabel && (
         <div className="absolute inset-0 flex items-end justify-between p-4 md:p-6">
-          <span className="font-sans text-[0.6rem] uppercase tracking-[0.22em] text-dark/50">
+          <span className="font-sans text-[0.6rem] uppercase tracking-[0.22em] text-ink/50">
             {filename}
           </span>
-          <span className="font-sans text-[0.6rem] uppercase tracking-[0.22em] text-dark/50">
+          <span className="font-sans text-[0.6rem] uppercase tracking-[0.22em] text-ink/50">
             {width}×{height}
           </span>
         </div>

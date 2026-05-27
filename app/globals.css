@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --color-dark: #2A1810;
-  --color-brown: #7A4F3A;
-  --color-cream: #F2E8DC;
+  --color-cream: #F4ECDC;
+  --color-rouge: #D63C5E;
+  --color-ink: #1A1612;
+  --color-brown: #3A2A1E;
+  /* Product variant colors (physical sock colorways) */
   --color-terra: #C2604A;
   --color-sage: #8A9E8C;
 }
@@ -13,7 +15,7 @@
 html,
 body {
   background-color: var(--color-cream);
-  color: var(--color-dark);
+  color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -23,12 +25,15 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Hero title overflows on purpose; clip horizontally at the root */
 body {
   overflow-x: hidden;
+  /* Paper grain — inline SVG turbulence, tiled. Subtle but kills the AI sheen. */
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+  background-repeat: repeat;
 }
 
-/* Hide native cursor on devices that support hover; show custom one */
+/* Custom cursor (desktop only) */
 @media (hover: hover) and (pointer: fine) {
   html.has-custom-cursor,
   html.has-custom-cursor * {
@@ -37,24 +42,22 @@ body {
 }
 
 ::selection {
-  background-color: var(--color-terra);
+  background-color: var(--color-rouge);
   color: var(--color-cream);
 }
 
-/* Editorial italic helper */
+/* Editorial italic helper — pointing to Fraunces now */
 .font-display {
-  font-family: var(--font-cormorant), serif;
+  font-family: var(--font-fraunces), Georgia, serif;
   font-style: italic;
   font-weight: 400;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
-/* Subtle hairline used between sections */
 .hairline {
-  border-top: 1px solid rgba(42, 24, 16, 0.12);
+  border-top: 1px solid rgba(26, 22, 18, 0.12);
 }
 
-/* Smooth scaling for hover containers */
 .img-zoom {
   overflow: hidden;
 }
@@ -63,4 +66,11 @@ body {
 }
 .img-zoom:hover > * {
   transform: scale(1.02);
+}
+
+/* Marquee row content needs to be 200% wide so the -50% translate loops seamlessly */
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  will-change: transform;
 }

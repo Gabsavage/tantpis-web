@@ -62,15 +62,15 @@ export default function CustomCursor() {
         translateX: springX,
         translateY: springY,
       }}
-      className="pointer-events-none fixed left-0 top-0 z-[100] mix-blend-difference"
+      className="pointer-events-none fixed left-0 top-0 z-[100]"
     >
       <motion.span
         animate={{
-          scale: hovering ? 2.4 : 1,
+          scale: hovering ? 2.6 : 1,
           opacity: visible ? 1 : 0,
         }}
         transition={{ type: 'spring', stiffness: 350, damping: 28 }}
-        className="block h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cream"
+        className="block h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-rouge ring-1 ring-cream/80"
       />
     </motion.div>
   );

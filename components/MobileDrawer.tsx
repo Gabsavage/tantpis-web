@@ -44,7 +44,7 @@ export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             onClick={onClose}
-            className="fixed inset-0 z-[60] bg-dark/30 md:hidden"
+            className="fixed inset-0 z-[60] bg-ink/30 md:hidden"
             aria-hidden
           />
 
@@ -81,7 +81,7 @@ export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
                     <Link
                       href={l.href}
                       onClick={onClose}
-                      className="font-display italic block text-3xl text-dark transition-colors hover:text-terra"
+                      className="font-display italic block text-3xl text-ink transition-colors hover:text-rouge"
                     >
                       {l.label}
                     </Link>
@@ -91,7 +91,7 @@ export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
             </nav>
 
             <div className="mt-auto pt-10">
-              <p className="font-display italic text-lg text-dark">
+              <p className="font-display italic text-lg text-ink">
                 Tant Pis<span aria-hidden>👄</span>
               </p>
               <p className="mt-2 text-xs leading-relaxed text-brown/70">

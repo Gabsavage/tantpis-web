@@ -98,10 +98,10 @@ export default function ProductDetail({
                     aria-label={`Voir le coloris ${c.name}`}
                     aria-pressed={isActive}
                     className={[
-                      'h-8 w-8 rounded-full border border-dark/10 transition-shadow duration-300',
+                      'h-8 w-8 rounded-full border border-ink/10 transition-shadow duration-300',
                       isActive
-                        ? 'ring-2 ring-dark ring-offset-2 ring-offset-cream/80'
-                        : 'hover:ring-2 hover:ring-dark/30 hover:ring-offset-2 hover:ring-offset-cream/80',
+                        ? 'ring-2 ring-ink ring-offset-2 ring-offset-cream/80'
+                        : 'hover:ring-2 hover:ring-ink/30 hover:ring-offset-2 hover:ring-offset-cream/80',
                     ].join(' ')}
                     style={{ backgroundColor: c.hex }}
                   />
@@ -149,7 +149,7 @@ export default function ProductDetail({
                   onClick={() => setSelectedHex(c.hex)}
                   className={[
                     'h-1.5 rounded-full transition-all duration-300',
-                    c.hex === selectedHex ? 'w-6 bg-dark' : 'w-1.5 bg-dark/30',
+                    c.hex === selectedHex ? 'w-6 bg-ink' : 'w-1.5 bg-ink/30',
                   ].join(' ')}
                 />
               ))}
@@ -172,24 +172,26 @@ export default function ProductDetail({
 
           <motion.h1
             {...stagger(1)}
-            className="font-display italic mt-6 text-5xl leading-[0.95] tracking-tight text-dark md:text-6xl"
+            className="font-display italic mt-6 text-5xl leading-[0.95] tracking-tight text-ink md:text-6xl"
           >
             {product.name}
           </motion.h1>
 
           <motion.div {...stagger(2)} className="mt-6">
-            <p className="text-xl font-normal text-brown">{product.price} €</p>
-            <p className="mt-2 text-[0.72rem] uppercase tracking-[0.18em] text-brown/70">
-              Livraison offerte dès 2 paires · Retours 30 jours
+            <p className="font-display italic text-2xl text-ink">
+              <span className="font-mono not-italic">{product.price}</span>&nbsp;€
+            </p>
+            <p className="mt-2 font-mono text-[0.7rem] uppercase tracking-[0.2em] text-ink/55">
+              Livraison offerte ≥ 2 paires · Retours 30 jours
             </p>
           </motion.div>
 
-          <motion.div {...stagger(3)} className="my-10 border-t border-dark/20" />
+          <motion.div {...stagger(3)} className="my-10 border-t border-ink/20" />
 
           {/* Colorway selector */}
           <motion.fieldset {...stagger(4)}>
-            <legend className="text-[0.7rem] uppercase tracking-[0.24em] text-brown">
-              Coloris — <span className="text-dark">{selected.name}</span>
+            <legend className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-ink/55">
+              Couleur — <span className="text-ink">{selected.name}</span>
             </legend>
             <div className="mt-4 flex items-center gap-4">
               {product.colorways.map((c) => {
@@ -205,10 +207,10 @@ export default function ProductDetail({
                     whileTap={reduced ? undefined : { scale: 0.95 }}
                     transition={{ type: 'spring', stiffness: 400, damping: 18 }}
                     className={[
-                      'h-7 w-7 rounded-full border border-dark/10 transition-shadow duration-300',
+                      'h-7 w-7 rounded-full border border-ink/10 transition-shadow duration-300',
                       isActive
-                        ? 'ring-2 ring-dark ring-offset-4 ring-offset-cream'
-                        : 'hover:ring-2 hover:ring-dark/40 hover:ring-offset-4 hover:ring-offset-cream',
+                        ? 'ring-2 ring-ink ring-offset-4 ring-offset-cream'
+                        : 'hover:ring-2 hover:ring-ink/40 hover:ring-offset-4 hover:ring-offset-cream',
                     ].join(' ')}
                     style={{ backgroundColor: c.hex }}
                   />
@@ -219,18 +221,18 @@ export default function ProductDetail({
 
           {/* Size */}
           <motion.fieldset {...stagger(5)} className="mt-10">
-            <legend className="text-[0.7rem] uppercase tracking-[0.24em] text-brown">
+            <legend className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-ink/55">
               Taille
             </legend>
             <div className="mt-4 flex items-center gap-3">
               <span
                 aria-pressed="true"
-                className="inline-flex items-center justify-center rounded-full bg-dark px-5 py-2 text-[0.78rem] uppercase tracking-[0.18em] text-cream"
+                className="inline-flex items-center justify-center rounded-full bg-ink px-5 py-2 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-cream"
               >
                 36 – 42
               </span>
-              <span className="font-display italic text-sm text-brown">
-                Taille unique
+              <span className="font-display italic text-sm text-ink/65">
+                Une seule. On galère aussi sur les premiers stocks.
               </span>
             </div>
           </motion.fieldset>
@@ -244,49 +246,50 @@ export default function ProductDetail({
             />
           </motion.div>
 
-          <div className="my-12 border-t border-dark/20" />
+          <div className="my-12 border-t border-ink/20" />
 
           {/* Long description */}
           <motion.section {...stagger(7)}>
-            <p className="text-[0.7rem] uppercase tracking-[0.24em] text-brown">
-              Le produit
+            <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-ink/55">
+              Ce que c’est
             </p>
-            <p className="mt-5 text-[0.98rem] leading-[1.8] text-dark/80">
-              La Grip Sock, c&apos;est la chaussette qu&apos;on voulait trouver
-              en studio sans jamais la trouver. Full sole en picots silicone
-              pour ne jamais glisser, matières douces qui respirent, coloris
-              pensés pour aller avec tout ce qu&apos;on porte déjà. Simple. Bien
-              fait. Tant pis pour le reste.
+            <p className="mt-5 text-[0.98rem] leading-[1.8] text-ink/85">
+              {product.longDescription}
             </p>
           </motion.section>
 
           {/* Accordions */}
           <motion.div {...stagger(8)} className="mt-12">
-            <Accordion title="Composition">
-              {product.composition}. Grip&nbsp;: {product.grip.toLowerCase()}.
+            <Accordion title="Matière">
+              {product.composition}. Le coton est peigné fil long (Supima) — celui qui boulotte pas après quelques lavages.
+            </Accordion>
+            <Accordion title="Grip">
+              {product.grip}. Testé sur Reformer, tapis et parquet de studio. Tient.
             </Accordion>
             <Accordion title="Entretien">
-              Lavage machine 30°, à l&apos;envers. Pas de sèche-linge.
+              Machine 30°, à l’envers. Pas de sèche-linge — t’as quand même un compte Vinted, c’est pas la peine de cramer tes chaussettes.
             </Accordion>
             <Accordion title="Livraison & retours">
-              Livraison offerte dès 2 paires. Retours acceptés sous 30 jours,
-              produit non porté.
+              France métropolitaine : 4,90 € pour une paire, gratuite à partir de deux. Retours sous 30 jours, produit non porté (on est pas dingues).
+            </Accordion>
+            <Accordion title="Fabrication">
+              Designé à Paris 11e. Tricoté à Vila Nova de Famalicão, au Portugal — la même région qui fabrique pour pas mal de marques qu’on aime bien. 9 prototypes avant celle-là.
             </Accordion>
           </motion.div>
 
           {/* Lifestyle gallery */}
           <motion.section {...stagger(9)} className="mt-20">
             <div className="flex items-baseline justify-between">
-              <p className="text-[0.7rem] uppercase tracking-[0.24em] text-brown">
-                Elles portent la Grip Sock
+              <p className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-ink/55">
+                Portées
               </p>
               <a
                 href="https://www.instagram.com/tantpis"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[0.72rem] uppercase tracking-[0.2em] text-dark/70 hover:text-terra"
+                className="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-ink/70 hover:text-rouge"
               >
-                Voir sur Instagram →
+                @tantpis →
               </a>
             </div>
             <div className="mt-6 grid grid-cols-3 gap-3">
@@ -327,7 +330,7 @@ function AtcButton({
       type="button"
       onClick={onClick}
       aria-live="polite"
-      className="group relative flex h-14 w-full items-center justify-center overflow-hidden border border-terra bg-terra text-cream transition-colors duration-300 hover:bg-cream hover:text-terra"
+      className="group relative flex h-14 w-full items-center justify-center overflow-hidden border border-rouge bg-rouge text-cream transition-colors duration-300 hover:bg-cream hover:text-rouge"
     >
       <AnimatePresence mode="wait" initial={false}>
         {added ? (
@@ -337,10 +340,10 @@ function AtcButton({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="font-display italic inline-flex items-center gap-3 text-lg"
+            className="font-mono inline-flex items-center gap-3 text-[0.78rem] uppercase tracking-[0.22em]"
           >
             <Check />
-            Ajouté
+            Dans le panier · merci 👄
           </motion.span>
         ) : (
           <motion.span
@@ -349,9 +352,9 @@ function AtcButton({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="font-display italic text-lg"
+            className="font-mono text-[0.78rem] uppercase tracking-[0.22em]"
           >
-            Ajouter au panier — {price} €
+            Je le prends — {price}&nbsp;€
           </motion.span>
         )}
       </AnimatePresence>

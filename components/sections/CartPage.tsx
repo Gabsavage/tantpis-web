@@ -40,7 +40,7 @@ export default function CartPage({ expired = false }: CartPageProps) {
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-8 border border-terra/30 bg-terra/10 px-5 py-4 text-sm text-terra"
+            className="mb-8 border border-rouge/30 bg-rouge/10 px-5 py-4 text-sm text-rouge"
             role="alert"
           >
             Ta session a expiré, recommence ta commande.
@@ -48,7 +48,7 @@ export default function CartPage({ expired = false }: CartPageProps) {
         )}
 
         <header className="mb-12 md:mb-16">
-          <h1 className="font-display italic text-4xl text-dark md:text-5xl">
+          <h1 className="font-display italic text-4xl text-ink md:text-5xl">
             Ton panier
           </h1>
           <p className="mt-3 text-sm text-brown">
@@ -115,19 +115,19 @@ function EmptyCart({ reduced }: { reduced: boolean }) {
       initial={reduced ? false : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="mx-auto flex max-w-md flex-col items-center py-24 text-center"
+      className="mx-auto flex max-w-md flex-col items-center py-20 text-center md:py-28"
     >
-      <p className="font-display italic text-5xl text-dark md:text-6xl">
-        Rien pour l&apos;instant<span aria-hidden>👄</span>
+      <p className="font-display italic text-6xl text-ink md:text-7xl">
+        Vide<span aria-hidden>.👄</span>
       </p>
-      <p className="mt-6 text-sm leading-relaxed text-brown">
-        Tant pis — il n&apos;est pas trop tard.
+      <p className="mt-6 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-ink/65">
+        Tant pis — on en a d&apos;autres.
       </p>
       <Link
         href="/produit/la-grip-sock"
-        className="group mt-10 inline-flex items-center gap-3 border border-terra bg-terra px-7 py-4 text-[0.78rem] uppercase tracking-[0.22em] text-cream transition-colors duration-300 hover:bg-cream hover:text-terra"
+        className="group mt-10 inline-flex items-center gap-3 border border-rouge bg-rouge px-7 py-4 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-cream transition-colors duration-300 hover:bg-cream hover:text-rouge"
       >
-        <span>Voir la collection</span>
+        <span>La chaussette</span>
         <span aria-hidden className="transition-transform group-hover:translate-x-1">
           →
         </span>
@@ -172,7 +172,7 @@ function CartLine({
         ease: [0.22, 1, 0.36, 1],
         delay: 0.06 * index,
       }}
-      className="overflow-hidden border-b border-dark/15"
+      className="overflow-hidden border-b border-ink/15"
     >
       <div className="flex items-start gap-5 py-6 md:items-center">
         {/* Image */}
@@ -191,12 +191,13 @@ function CartLine({
         <div className="flex min-w-0 flex-1 flex-col gap-1">
           <Link
             href={`/produit/${item.slug}`}
-            className="text-[0.95rem] text-dark hover:text-terra transition-colors"
+            className="font-display italic text-lg text-ink hover:text-rouge transition-colors"
           >
             {item.name}
           </Link>
-          <p className="text-sm font-light text-brown/80">{item.colorway}</p>
-          <p className="text-xs text-brown/50">Taille unique 36–42</p>
+          <p className="font-mono text-[0.7rem] uppercase tracking-[0.18em] text-ink/65">
+            {item.colorway} · 36–42
+          </p>
 
           {/* Mobile: qty + price below info */}
           <div className="mt-3 flex items-center justify-between gap-4 md:hidden">
@@ -204,7 +205,7 @@ function CartLine({
               value={item.quantity}
               onChange={onQuantityChange}
             />
-            <p className="text-[0.95rem] text-dark">
+            <p className="text-[0.95rem] text-ink">
               <AnimatedPrice value={item.price * item.quantity} />
             </p>
           </div>
@@ -213,7 +214,7 @@ function CartLine({
         {/* Desktop: qty + price inline */}
         <div className="hidden items-center gap-8 md:flex">
           <QuantityStepper value={item.quantity} onChange={onQuantityChange} />
-          <p className="w-20 text-right text-[0.95rem] text-dark">
+          <p className="w-20 text-right text-[0.95rem] text-ink">
             <AnimatedPrice value={item.price * item.quantity} />
           </p>
         </div>
@@ -223,7 +224,7 @@ function CartLine({
           type="button"
           onClick={onRemove}
           aria-label={`Supprimer ${item.name} ${item.colorway}`}
-          className="ml-2 inline-flex h-8 w-8 shrink-0 items-center justify-center text-dark/40 transition-colors hover:text-terra"
+          className="ml-2 inline-flex h-8 w-8 shrink-0 items-center justify-center text-ink/40 transition-colors hover:text-rouge"
         >
           <svg
             width="14"
@@ -253,19 +254,19 @@ function QuantityStepper({
   // 44×44 touch target on mobile (Apple HIG), compacted on desktop.
   const cell = 'h-11 w-11 md:h-9 md:w-9';
   return (
-    <div className="inline-flex items-center border border-dark/20">
+    <div className="inline-flex items-center border border-ink/20">
       <button
         type="button"
         onClick={() => onChange(Math.max(1, value - 1))}
         disabled={value <= 1}
         aria-label="Diminuer la quantité"
-        className={`${cell} text-dark/70 transition-colors hover:text-dark disabled:opacity-30`}
+        className={`${cell} text-ink/70 transition-colors hover:text-ink disabled:opacity-30`}
       >
         −
       </button>
       <span
         aria-live="polite"
-        className="w-10 text-center text-sm tabular-nums text-dark md:w-8"
+        className="w-10 text-center text-sm tabular-nums text-ink md:w-8"
       >
         {value}
       </span>
@@ -273,7 +274,7 @@ function QuantityStepper({
         type="button"
         onClick={() => onChange(value + 1)}
         aria-label="Augmenter la quantité"
-        className={`${cell} text-dark/70 transition-colors hover:text-dark`}
+        className={`${cell} text-ink/70 transition-colors hover:text-ink`}
       >
         +
       </button>
@@ -337,44 +338,46 @@ function Summary({
   };
 
   return (
-    <div className="rounded-lg border border-dark/10 bg-white/40 p-6 backdrop-blur-md md:p-7">
-      <p className="text-[0.7rem] uppercase tracking-[0.24em] text-brown">
-        Récapitulatif
+    <div className="border border-ink/15 bg-cream/60 p-6 backdrop-blur-md md:p-8">
+      <p className="font-mono text-[0.65rem] uppercase tracking-[0.28em] text-ink/55">
+        Récap
       </p>
 
-      <dl className="mt-6 space-y-3 text-sm">
+      <dl className="mt-6 space-y-3 font-mono text-[0.85rem]">
         <div className="flex items-center justify-between">
-          <dt className="text-dark/80">Sous-total</dt>
-          <dd className="text-dark">
+          <dt className="text-ink/75">Sous-total</dt>
+          <dd className="text-ink">
             <AnimatedPrice value={subtotal} />
           </dd>
         </div>
         <div className="flex items-center justify-between">
-          <dt className="text-dark/80">Livraison</dt>
-          <dd className={freeShipping ? 'text-sage' : 'text-dark'}>
+          <dt className="text-ink/75">Livraison</dt>
+          <dd className={freeShipping ? 'text-rouge' : 'text-ink'}>
             {freeShipping ? (
-              'Offerte'
+              <>Offerte <span aria-hidden>👄</span></>
             ) : (
               <AnimatedPrice value={shipping} alwaysShowDecimals />
             )}
           </dd>
         </div>
         {!freeShipping && (
-          <p className="font-display italic text-xs leading-relaxed text-brown/70">
-            Livraison offerte dès 2 paires.
+          <p className="font-display italic text-xs leading-relaxed text-ink/65 normal-case tracking-normal">
+            Tu prends une seconde paire&nbsp;? La livraison est offerte.
           </p>
         )}
       </dl>
 
-      <div className="my-5 border-t border-dark/15" />
+      <div className="my-5 border-t border-ink/20" />
 
       <div className="flex items-baseline justify-between">
-        <span className="text-base text-dark">Total</span>
-        <span className="text-lg font-normal text-dark">
+        <span className="font-mono text-[0.85rem] text-ink">Total</span>
+        <span className="font-display italic text-2xl text-ink">
           <AnimatedPrice value={total} />
         </span>
       </div>
-      <p className="mt-1 text-[0.7rem] text-brown/60">TVA incluse</p>
+      <p className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ink/50">
+        TVA incluse
+      </p>
 
       <motion.button
         type="button"
@@ -390,13 +393,13 @@ function Summary({
             ? { duration: 1.4, repeat: Infinity, ease: 'easeInOut' }
             : { duration: 0.3 }
         }
-        className="mt-7 flex h-14 w-full items-center justify-center bg-dark text-cream transition-opacity duration-300 hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-50"
+        className="mt-7 flex h-14 w-full items-center justify-center bg-ink font-mono text-[0.78rem] uppercase tracking-[0.22em] text-cream transition-opacity duration-300 hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-50"
       >
         {loading ? (
           <Spinner />
         ) : (
-          <span className="font-display italic inline-flex items-center gap-3 text-lg">
-            Passer la commande
+          <span className="inline-flex items-center gap-3">
+            On y va
             <span aria-hidden>→</span>
           </span>
         )}
@@ -405,24 +408,24 @@ function Summary({
       {error && (
         <p
           role="alert"
-          className="mt-3 text-xs leading-relaxed text-terra"
+          className="mt-3 text-xs leading-relaxed text-rouge"
         >
           {error}
         </p>
       )}
 
-      <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[0.65rem] text-brown/70">
+      <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-ink/55">
         <li className="inline-flex items-center gap-1.5">
           <LockIcon />
-          Paiement sécurisé · Stripe
+          Stripe
         </li>
         <li className="inline-flex items-center gap-1.5">
           <ReturnIcon />
-          Retours 30 jours
+          Retours 30 j
         </li>
         <li className="inline-flex items-center gap-1.5">
           <BoxIcon />
-          Livraison 3–5 jours
+          3–5 j
         </li>
       </ul>
     </div>

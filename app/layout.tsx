@@ -1,22 +1,35 @@
 import type { Metadata } from 'next';
-import { Cormorant_Garamond, DM_Sans } from 'next/font/google';
+import { Fraunces, Instrument_Sans, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CustomCursor from '@/components/CustomCursor';
+import MarqueeTop from '@/components/MarqueeTop';
 
-const cormorant = Cormorant_Garamond({
+// Display: Fraunces — variable, italic, characterful — replaces Cormorant Garamond.
+// Loaded as variable (no static `weight`) so we can use SOFT + opsz axes for
+// optical-size aware italics.
+const fraunces = Fraunces({
   subsets: ['latin'],
-  weight: ['400', '500'],
   style: ['italic', 'normal'],
-  variable: '--font-cormorant',
+  axes: ['SOFT', 'opsz'],
+  variable: '--font-fraunces',
   display: 'swap',
 });
 
-const dmSans = DM_Sans({
+// Body: Instrument Sans — more character than DM Sans, less ubiquitous
+const instrument = Instrument_Sans({
   subsets: ['latin'],
-  weight: ['300', '400'],
-  variable: '--font-dm-sans',
+  weight: ['400', '500'],
+  variable: '--font-instrument',
+  display: 'swap',
+});
+
+// Mono accent for prices / numbers / technical microcopy
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-mono',
   display: 'swap',
 });
 
@@ -29,7 +42,7 @@ export const metadata: Metadata = {
     template: '%s — Tant Pis.',
   },
   description:
-    'Grip socks Pilates pour le studio. Coloris pensés, grip full sole, fait pour durer. Livraison offerte dès 2 paires.',
+    'Des chaussettes Pilates qu’on a envie de porter. Faites au Portugal, vendues 22 € la paire.',
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
@@ -44,9 +57,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" className={`${cormorant.variable} ${dmSans.variable}`}>
-      <body className="font-sans font-light bg-cream text-dark min-h-screen flex flex-col">
+    <html
+      lang="fr"
+      className={`${fraunces.variable} ${instrument.variable} ${mono.variable}`}
+    >
+      <body className="font-sans bg-cream text-ink min-h-screen flex flex-col">
         <CustomCursor />
+        <MarqueeTop />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

@@ -69,23 +69,23 @@ export default function HomeProduct({ product, images }: HomeProductProps) {
 
         {/* Info — 40% (2/5) */}
         <div className="md:col-span-2 md:pt-8">
-          <p className="text-[0.7rem] uppercase tracking-[0.28em] text-brown">
-            — Le produit
+          <p className="font-mono text-[0.65rem] uppercase tracking-[0.28em] text-ink/55">
+            01 — La chaussette
           </p>
           <h2
             id="product-heading"
-            className="font-display italic mt-4 text-5xl leading-[0.95] tracking-tight text-dark md:text-7xl"
+            className="font-display italic mt-4 text-5xl leading-[0.95] tracking-tight text-ink md:text-7xl"
           >
             {product.name}
           </h2>
-          <p className="mt-6 max-w-md text-[0.95rem] leading-relaxed text-dark/80">
+          <p className="mt-6 max-w-md text-[0.98rem] leading-[1.7] text-ink/80">
             {product.shortDescription}
           </p>
 
           {/* Colorway swatches */}
           <fieldset className="mt-10">
-            <legend className="text-[0.65rem] uppercase tracking-[0.24em] text-brown">
-              Coloris — {selected.name}
+            <legend className="font-mono text-[0.65rem] uppercase tracking-[0.24em] text-ink/55">
+              Couleur — <span className="text-ink">{selected.name}</span>
             </legend>
             <div className="mt-4 flex items-center gap-4">
               {product.colorways.map((c) => {
@@ -101,10 +101,10 @@ export default function HomeProduct({ product, images }: HomeProductProps) {
                     whileTap={reduced ? undefined : { scale: 0.95 }}
                     transition={{ type: 'spring', stiffness: 400, damping: 18 }}
                     className={[
-                      'relative h-9 w-9 rounded-full border border-dark/10 transition-shadow duration-300',
+                      'relative h-9 w-9 rounded-full border border-ink/10 transition-shadow duration-300',
                       isActive
-                        ? 'ring-2 ring-dark ring-offset-4 ring-offset-cream'
-                        : 'ring-0 hover:ring-2 hover:ring-dark/40 hover:ring-offset-4 hover:ring-offset-cream',
+                        ? 'ring-2 ring-ink ring-offset-4 ring-offset-cream'
+                        : 'ring-0 hover:ring-2 hover:ring-ink/40 hover:ring-offset-4 hover:ring-offset-cream',
                     ].join(' ')}
                     style={{ backgroundColor: c.hex }}
                   />
@@ -115,11 +115,11 @@ export default function HomeProduct({ product, images }: HomeProductProps) {
 
           {/* Price + CTA */}
           <div className="mt-10 flex items-baseline gap-6">
-            <p className="font-display italic text-4xl text-dark">
-              {product.price} €
+            <p className="font-display italic text-4xl text-ink">
+              <span className="font-mono not-italic">{product.price}</span>&nbsp;€
             </p>
-            <p className="text-[0.65rem] uppercase tracking-[0.22em] text-brown">
-              Taille {product.size}
+            <p className="font-mono text-[0.65rem] uppercase tracking-[0.22em] text-ink/55">
+              36 – 42
             </p>
           </div>
 
@@ -127,9 +127,9 @@ export default function HomeProduct({ product, images }: HomeProductProps) {
             <button
               type="button"
               onClick={handleAdd}
-              className="group relative inline-flex items-center justify-center gap-3 border border-terra bg-terra px-8 py-4 text-[0.78rem] uppercase tracking-[0.22em] text-cream transition-colors duration-300 hover:bg-cream hover:text-terra"
+              className="group relative inline-flex items-center justify-center gap-3 border border-rouge bg-rouge px-8 py-4 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-cream transition-colors duration-300 hover:bg-cream hover:text-rouge"
             >
-              <span>{added ? 'Ajouté' : 'Ajouter au panier'}</span>
+              <span>{added ? 'Ajouté · merci 👄' : 'Je le prends'}</span>
               <span
                 aria-hidden
                 className="transition-transform duration-300 group-hover:translate-x-1"
@@ -139,14 +139,14 @@ export default function HomeProduct({ product, images }: HomeProductProps) {
             </button>
             <Link
               href={`/produit/${product.slug}`}
-              className="text-[0.78rem] uppercase tracking-[0.22em] text-dark/70 underline-offset-4 hover:text-dark hover:underline"
+              className="font-mono text-[0.72rem] uppercase tracking-[0.22em] text-ink/65 underline-offset-4 hover:text-ink hover:underline"
             >
-              Voir le détail
+              Tout savoir
             </Link>
           </div>
 
-          <p className="mt-5 text-xs leading-relaxed text-brown">
-            Taille unique 36–42 · Livraison offerte dès 2 paires
+          <p className="mt-5 max-w-xs text-xs leading-[1.6] text-ink/60">
+            Taille unique 36–42 (oui, c’est large — on a un peu galéré aussi sur les premiers protos). Livraison offerte à partir de 2 paires.
           </p>
         </div>
       </motion.div>

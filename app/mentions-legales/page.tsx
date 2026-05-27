@@ -32,7 +32,7 @@ const SECTIONS = [
           href="https://vercel.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline-offset-4 hover:underline hover:text-terra"
+          className="underline-offset-4 hover:underline hover:text-rouge"
         >
           vercel.com
         </a>
@@ -62,7 +62,7 @@ const SECTIONS = [
         rectification et de suppression de vos données. Contact&nbsp;:{' '}
         <a
           href="mailto:hello@tantpis.fr"
-          className="underline-offset-4 hover:underline hover:text-terra"
+          className="underline-offset-4 hover:underline hover:text-rouge"
         >
           hello@tantpis.fr
         </a>
@@ -95,7 +95,7 @@ export default function MentionsLegalesPage() {
   return (
     <div className="bg-cream pt-28 md:pt-36">
       <article className="mx-auto max-w-[720px] px-6 pb-24 md:pb-32">
-        <h1 className="font-display italic text-5xl leading-[1.02] tracking-tight text-dark md:text-6xl">
+        <h1 className="font-display italic text-5xl leading-[1.02] tracking-tight text-ink md:text-6xl">
           Mentions légales
         </h1>
         <p className="mt-4 text-sm font-light text-brown/70">
@@ -105,20 +105,20 @@ export default function MentionsLegalesPage() {
         <div className="mt-12 space-y-12 md:mt-16">
           {SECTIONS.map((s, i) => (
             <section key={s.title}>
-              <h2 className="text-[0.78rem] uppercase tracking-[0.22em] text-dark">
+              <h2 className="text-[0.78rem] uppercase tracking-[0.22em] text-ink">
                 {String(i + 1).padStart(2, '0')} — {s.title}
               </h2>
-              <div className="mt-4 text-[0.95rem] font-light leading-[1.8] text-dark/80">
+              <div className="mt-4 text-[0.95rem] font-light leading-[1.8] text-ink/80">
                 {s.body}
               </div>
             </section>
           ))}
         </div>
 
-        <div className="mt-20 border-t border-dark/15 pt-8">
+        <div className="mt-20 border-t border-ink/15 pt-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-[0.78rem] uppercase tracking-[0.22em] text-brown transition-colors hover:text-dark"
+            className="inline-flex items-center gap-2 text-[0.78rem] uppercase tracking-[0.22em] text-brown transition-colors hover:text-ink"
           >
             <span aria-hidden>←</span> Retour à l&apos;accueil
           </Link>

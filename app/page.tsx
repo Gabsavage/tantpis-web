@@ -52,20 +52,7 @@ export default async function HomePage() {
 
       <HomeProduct product={product} images={productImages} />
 
-      <HomeStory
-        aboutImage={
-          /* IMG SLOT: /public/images/about-lima.jpg — 1440×960 */
-          <PlaceholderImage
-            src="/images/about-lima.jpg"
-            alt="Atelier Tant Pis. — Paris / Lima"
-            aspect="3/2"
-            fallbackColor="#7A4F3A"
-            width={1440}
-            height={960}
-            sizes="100vw"
-          />
-        }
-      />
+      <HomeStory />
 
       <HomeReviews />
 

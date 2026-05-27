@@ -18,21 +18,21 @@ export default function Accordion({
   const [open, setOpen] = useState(defaultOpen);
 
   return (
-    <div className="border-b border-dark/15">
+    <div className="border-b border-ink/15">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         className="group flex w-full items-center justify-between gap-4 py-5 text-left"
       >
-        <span className="text-[0.78rem] uppercase tracking-[0.24em] text-dark">
+        <span className="text-[0.78rem] uppercase tracking-[0.24em] text-ink">
           {title}
         </span>
         <motion.span
           aria-hidden
           animate={{ rotate: open ? 45 : 0 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-block text-2xl leading-none text-dark/80"
+          className="inline-block text-2xl leading-none text-ink/80"
         >
           +
         </motion.span>
@@ -51,7 +51,7 @@ export default function Accordion({
             }}
             className="overflow-hidden"
           >
-            <div className="pb-6 pr-8 text-[0.92rem] leading-[1.75] text-dark/75">
+            <div className="pb-6 pr-8 text-[0.92rem] leading-[1.75] text-ink/75">
               {children}
             </div>
           </motion.div>

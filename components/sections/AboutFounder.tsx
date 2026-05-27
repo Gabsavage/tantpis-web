@@ -27,36 +27,44 @@ export default function AboutFounder({ image }: AboutFounderProps) {
         </div>
 
         <div className="md:pt-6">
-          <p className="text-[0.7rem] uppercase tracking-[0.24em] text-brown/60">
-            La marque
+          <p className="font-mono text-[0.65rem] uppercase tracking-[0.24em] text-ink/55">
+            Comment c’est arrivé
           </p>
           <h2
             id="about-brand"
-            className="font-display italic mt-4 text-4xl leading-[1.05] tracking-tight text-dark md:text-5xl"
+            className="font-display italic mt-4 text-4xl leading-[1.02] tracking-tight text-ink md:text-5xl"
           >
-            Tant pis pour les excuses<span aria-hidden>👄</span>
+            On en avait marre des chaussettes qui glissent<span aria-hidden>.👄</span>
           </h2>
 
-          <div className="mt-8 space-y-6 text-[0.95rem] leading-[1.9] text-dark/80">
+          <div className="mt-8 space-y-6 text-[0.98rem] leading-[1.85] text-ink/85">
             <p>
-              Tout a commencé à Paris, dans un studio de Pilates Reformer. La
-              même question qui revient&nbsp;: des chaussettes qui restent en
-              place, dans des coloris qu&apos;on a envie de porter, sans se
-              ruiner. Ça n&apos;existait pas vraiment en France.
+              On faisait du Reformer trois fois par semaine, dans un studio
+              Paris 11e. Toujours le même problème&nbsp;: les chaussettes Pilates
+              en vente à l’accueil étaient soit moches (le coup du logo brodé
+              énorme), soit trop chères (38 € pour deux picots à l’avant), soit
+              importées des États-Unis avec deux semaines de livraison.
             </p>
             <p>
-              Alors on a créé Tant Pis. Le nom dit tout&nbsp;: tant pis pour
-              les compromis, tant pis pour les trucs fades qu&apos;on porte par
-              défaut, tant pis pour attendre que quelqu&apos;un d&apos;autre le
-              fasse.
+              On a cherché des fabricants. Pas trouvé tout de suite. On a
+              testé&nbsp;: la Turquie (qualité OK, palette bof), l’Italie (trop
+              cher pour un prix de vente sous 25 €), puis le Portugal — Vila
+              Nova de Famalicão, la zone textile au nord de Porto qui fait pour
+              pas mal de marques qu’on aime bien. C’est là qu’on a trouvé la
+              maille qui tient sans gratter.
             </p>
             <p>
-              La marque a grandi entre Paris et Lima — les Andes comme métaphore
-              de l&apos;essentiel, de ce qui reste quand on enlève le superflu.
-              Ce n&apos;est pas du marketing. C&apos;est juste d&apos;où on
-              vient.
+              On a écrit 9 prototypes. On a viré les picots à l’avant pour
+              passer en full sole. On a changé deux fois de coloris. On s’est
+              décidées sur trois&nbsp;: terracotta, crème, sauge. Pas de
+              storytelling énorme là-dessous. Juste des chaussettes faites
+              correctement et qu’on a envie de porter.
             </p>
           </div>
+
+          <p className="mt-10 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-ink/55">
+            — L’équipe, Paris 11e
+          </p>
         </div>
       </motion.div>
     </section>

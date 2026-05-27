@@ -43,7 +43,7 @@ export default function Header() {
           'fixed inset-x-0 top-0 z-50 transition-colors duration-500',
           transparent
             ? 'bg-transparent'
-            : 'bg-cream/90 backdrop-blur-md border-b border-dark/10',
+            : 'bg-cream/90 backdrop-blur-md border-b border-ink/10',
         ].join(' ')}
       >
         <div className="relative mx-auto flex h-16 max-w-[1600px] items-center px-5 md:h-20 md:px-10">
@@ -74,8 +74,8 @@ export default function Header() {
                     className={[
                       'text-sm transition-colors',
                       active
-                        ? 'text-dark'
-                        : 'text-dark/70 hover:text-dark',
+                        ? 'text-ink'
+                        : 'text-ink/70 hover:text-ink',
                     ].join(' ')}
                   >
                     {l.label}
@@ -87,7 +87,7 @@ export default function Header() {
 
           {/* CENTER — logo */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <Logo className="text-[1.35rem] md:text-[1.6rem] text-dark" />
+            <Logo className="text-[1.35rem] md:text-[1.6rem] text-ink" />
           </div>
 
           {/* RIGHT — cart */}
@@ -116,7 +116,7 @@ export default function Header() {
                   <path d="M9 7a3 3 0 0 1 6 0" />
                 </svg>
                 {hydrated && count > 0 && (
-                  <span className="absolute -right-2 -top-2 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-terra px-1 text-[0.6rem] font-normal not-italic text-cream">
+                  <span className="absolute -right-2 -top-2 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-rouge px-1 text-[0.6rem] font-normal not-italic text-cream">
                     {count}
                   </span>
                 )}
@@ -142,7 +142,7 @@ function Burger({ open }: { open: boolean }) {
           y: open ? 5 : 0,
         }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-0 top-0 block h-px w-full bg-dark"
+        className="absolute left-0 top-0 block h-px w-full bg-ink"
         style={{ transformOrigin: 'center' }}
       />
       <motion.span
@@ -151,7 +151,7 @@ function Burger({ open }: { open: boolean }) {
           y: open ? -5 : 0,
         }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-0 left-0 block h-px w-full bg-dark"
+        className="absolute bottom-0 left-0 block h-px w-full bg-ink"
         style={{ transformOrigin: 'center' }}
       />
     </span>

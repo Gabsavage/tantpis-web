@@ -8,18 +8,34 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        dark: '#2A1810',
-        brown: '#7A4F3A',
-        cream: '#F2E8DC',
+        // Brand palette — Rouge Baiser
+        cream: '#F4ECDC', // un poil plus chaud que l'ancien
+        rouge: '#D63C5E', // accent unique — lipstick / 👄
+        ink: '#1A1612',   // presque noir mais pas tout à fait
+        // Carrying over for product variant naming only (physical sock colors)
         terra: '#C2604A',
+        brown: '#3A2A1E', // muted ink-ish neutral — used for secondary text
         sage: '#8A9E8C',
       },
       fontFamily: {
-        serif: ['var(--font-cormorant)', 'serif'],
-        sans: ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-fraunces)', 'Georgia', 'serif'],
+        sans: ['var(--font-instrument)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
+        // Legacy aliases retained so existing className references still resolve.
+        // serif used in a couple of places — alias to display.
+        serif: ['var(--font-fraunces)', 'Georgia', 'serif'],
       },
       screens: {
         md: '768px',
+      },
+      animation: {
+        marquee: 'marquee 30s linear infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
       },
     },
   },

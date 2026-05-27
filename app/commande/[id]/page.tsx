@@ -59,26 +59,26 @@ export default async function OrderConfirmation({
         <p className="text-[0.7rem] uppercase tracking-[0.32em] text-brown">
           — Confirmation
         </p>
-        <h1 className="font-display italic mt-6 text-5xl leading-[0.98] tracking-tight text-dark md:text-7xl">
+        <h1 className="font-display italic mt-6 text-5xl leading-[0.98] tracking-tight text-ink md:text-7xl">
           Commande confirmée<span aria-hidden> 🎉</span>
         </h1>
 
-        <p className="mt-6 max-w-md text-[1rem] leading-relaxed text-dark/80 md:text-lg">
+        <p className="mt-6 max-w-md text-[1rem] leading-relaxed text-ink/80 md:text-lg">
           Tant pis d&apos;avoir attendu aussi longtemps.
         </p>
 
-        <dl className="mt-12 grid w-full max-w-md grid-cols-1 gap-3 border-t border-dark/15 pt-8 text-left text-sm">
+        <dl className="mt-12 grid w-full max-w-md grid-cols-1 gap-3 border-t border-ink/15 pt-8 text-left text-sm">
           <div className="flex items-center justify-between">
             <dt className="text-brown/80">Confirmation envoyée à</dt>
-            <dd className="text-dark">{email}</dd>
+            <dd className="text-ink">{email}</dd>
           </div>
           <div className="flex items-center justify-between">
             <dt className="text-brown/80">Articles</dt>
-            <dd className="text-dark">{itemCount}</dd>
+            <dd className="text-ink">{itemCount}</dd>
           </div>
-          <div className="flex items-center justify-between border-t border-dark/15 pt-3">
+          <div className="flex items-center justify-between border-t border-ink/15 pt-3">
             <dt className="text-brown/80">Total</dt>
-            <dd className="font-display italic text-lg text-dark">{total}</dd>
+            <dd className="font-display italic text-lg text-ink">{total}</dd>
           </div>
         </dl>
 
@@ -89,7 +89,7 @@ export default async function OrderConfirmation({
 
         <Link
           href="/"
-          className="group mt-12 inline-flex items-center gap-3 border border-dark bg-dark px-7 py-4 text-[0.78rem] uppercase tracking-[0.22em] text-cream transition-colors duration-300 hover:bg-cream hover:text-dark"
+          className="group mt-12 inline-flex items-center gap-3 border border-ink bg-ink px-7 py-4 text-[0.78rem] uppercase tracking-[0.22em] text-cream transition-colors duration-300 hover:bg-cream hover:text-ink"
         >
           <span>Retour à l&apos;accueil</span>
           <span

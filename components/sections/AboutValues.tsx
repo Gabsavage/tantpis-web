@@ -1,23 +1,27 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
-import CountUp from '@/components/CountUp';
 
-const VALUES = [
+/**
+ * Replaces the previous "3 values cards" — too generic.
+ * Now a FAQ-style "questions qu’on nous pose" section with specific answers.
+ */
+const FAQS = [
   {
-    n: 1,
-    title: 'Le beau, pas le bling',
-    body: 'Des coloris pensés, des matières qui durent. Pas de logo partout. Juste bien fait.',
+    q: 'Pourquoi 22 € ?',
+    a: 'Parce qu’on a calculé. Coût de revient + transport + emballage + Stripe + douanes + un peu pour nous. À 22 €, on est rentables sur le volume, sans surfacturer parce qu’on aurait pu.',
   },
   {
-    n: 2,
-    title: 'Le corps sans moralisme',
-    body: 'On fait du Pilates parce qu’on aime ça, pas pour expier quelque chose. Tant pis pour la culpabilité.',
+    q: 'Pourquoi une seule taille ?',
+    a: 'Le 36–42 couvre 80 % des pieds en France métropolitaine. Quand on aura les moyens de tenir deux SKUs en stock, on en fera deux. Pas avant.',
   },
   {
-    n: 3,
-    title: 'Bootstrap, pas bullshit',
-    body: 'Une petite marque française qui fait ce qu’elle dit. Pas de storytelling vide. Juste le produit.',
+    q: 'Pourquoi pas d’abonnement ?',
+    a: 'Une chaussette en coton bien faite, ça dure trois ans si tu la laves correctement. On voit pas l’intérêt qu’on t’en envoie une nouvelle tous les mois.',
+  },
+  {
+    q: 'C’est vraiment fabriqué au Portugal ?',
+    a: 'Oui. Vila Nova de Famalicão, district de Braga. Si tu veux passer voir, on a pas le contact direct de l’usine — mais la photo du loading dock est sur Instagram.',
   },
 ] as const;
 
@@ -27,48 +31,53 @@ export default function AboutValues() {
   return (
     <section
       aria-labelledby="about-values"
-      className="bg-white/30 px-5 py-24 md:px-10 md:py-32"
+      className="bg-cream px-5 py-24 md:px-10 md:py-36"
     >
       <motion.div
         initial={reduced ? false : { opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="mx-auto max-w-[1300px]"
+        className="mx-auto max-w-[900px]"
       >
+        <p className="font-mono text-[0.65rem] uppercase tracking-[0.32em] text-ink/55">
+          Questions qu’on nous pose
+        </p>
         <h2
           id="about-values"
-          className="text-center text-[0.78rem] uppercase tracking-[0.32em] text-brown"
+          className="font-display italic mt-6 text-4xl leading-[1.02] tracking-tight text-ink md:text-6xl"
         >
-          Ce qu&apos;on croit
+          Les réponses honnêtes<span aria-hidden>.👄</span>
         </h2>
 
-        <ul className="mt-14 grid grid-cols-1 gap-12 md:mt-20 md:grid-cols-3 md:gap-12">
-          {VALUES.map((v, i) => (
-            <motion.li
-              key={v.n}
+        <dl className="mt-14 space-y-10 md:mt-20 md:space-y-14">
+          {FAQS.map((f, i) => (
+            <motion.div
+              key={f.q}
               initial={reduced ? false : { opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-80px' }}
               transition={{
                 duration: 0.7,
                 ease: [0.22, 1, 0.36, 1],
-                delay: 0.12 * i,
+                delay: 0.08 * i,
               }}
-              className="flex flex-col"
+              className="grid grid-cols-1 gap-3 border-t border-ink/15 pt-6 md:grid-cols-[140px_1fr] md:gap-12"
             >
-              <CountUp
-                to={v.n}
-                pad={2}
-                className="font-display italic text-5xl leading-none text-brown/25"
-              />
-              <h3 className="mt-6 text-base text-dark">{v.title}</h3>
-              <p className="mt-3 text-sm leading-[1.8] text-brown/80">
-                {v.body}
-              </p>
-            </motion.li>
+              <dt className="font-mono text-[0.7rem] uppercase tracking-[0.22em] text-ink/55">
+                Q{String(i + 1).padStart(2, '0')}
+              </dt>
+              <dd>
+                <p className="font-display italic text-2xl leading-tight text-ink md:text-3xl">
+                  {f.q}
+                </p>
+                <p className="mt-4 text-[0.98rem] leading-[1.8] text-ink/80">
+                  {f.a}
+                </p>
+              </dd>
+            </motion.div>
           ))}
-        </ul>
+        </dl>
       </motion.div>
     </section>
   );
