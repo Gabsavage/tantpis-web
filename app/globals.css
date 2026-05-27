@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-dark: #2A1810;
+  --color-brown: #7A4F3A;
+  --color-cream: #F2E8DC;
+  --color-terra: #C2604A;
+  --color-sage: #8A9E8C;
+}
+
+html,
+body {
+  background-color: var(--color-cream);
+  color: var(--color-dark);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hero title overflows on purpose; clip horizontally at the root */
+body {
+  overflow-x: hidden;
+}
+
+/* Hide native cursor on devices that support hover; show custom one */
+@media (hover: hover) and (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+::selection {
+  background-color: var(--color-terra);
+  color: var(--color-cream);
+}
+
+/* Editorial italic helper */
+.font-display {
+  font-family: var(--font-cormorant), serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Subtle hairline used between sections */
+.hairline {
+  border-top: 1px solid rgba(42, 24, 16, 0.12);
+}
+
+/* Smooth scaling for hover containers */
+.img-zoom {
+  overflow: hidden;
+}
+.img-zoom > * {
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.img-zoom:hover > * {
+  transform: scale(1.02);
+}
