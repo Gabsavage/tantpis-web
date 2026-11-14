@@ -21,7 +21,7 @@ export async function generateMetadata({
   return {
     title: product.name,
     description:
-      'Grip socks Pilates full sole, taille unique 36-42. Coloris Terracotta, Crème, Sauge. Livraison offerte dès 2 paires.',
+      'Grip socks Pilates full sole, taille unique 36-42. Collection Lima : Cusco, Miraflores, Barranco. Livraison offerte dès 2 paires.',
     openGraph: {
       title: `${product.name} — Tant Pis.`,
       description: product.shortDescription,
@@ -78,8 +78,8 @@ export default async function ProductPage({ params }: { params: Params }) {
     />,
     <PlaceholderImage
       key="lifestyle-3"
-      src="/images/product-terra.jpg"
-      alt="La Grip Sock — coloris Terracotta porté"
+      src="/images/product-cusco.jpg"
+      alt="La Grip Sock — coloris Cusco porté"
       aspect="1/1"
       fallbackColor="#C2604A"
       width={1080}

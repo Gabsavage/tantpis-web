@@ -8,22 +8,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Brand palette — Rouge Baiser
-        cream: '#F4ECDC', // un poil plus chaud que l'ancien
-        rouge: '#D63C5E', // accent unique — lipstick / 👄
-        ink: '#1A1612',   // presque noir mais pas tout à fait
-        // Carrying over for product variant naming only (physical sock colors)
-        terra: '#C2604A',
-        brown: '#3A2A1E', // muted ink-ish neutral — used for secondary text
-        sage: '#8A9E8C',
+        // Palette TANT PIS. — voir DESIGN_SYSTEM.md
+        cream: '#F2E8DC', // crème — fond dominant
+        terra: '#C2604A', // terracotta — accent unique
+        ink: '#2A1810',   // brun foncé — texte & sections d'impact
+        tabac: '#7A4F3A', // tabac — texte secondaire, labels
+        sage: '#8A9E8C',  // sauge — touch, max 1 élément par page
+        // Alias de compat — neutralise tout le fuchsia hérité vers la palette.
+        rouge: '#C2604A', // ex-fuchsia → terracotta
+        brown: '#7A4F3A', // ex-brun secondaire → tabac
       },
       fontFamily: {
-        display: ['var(--font-fraunces)', 'Georgia', 'serif'],
-        sans: ['var(--font-instrument)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
-        // Legacy aliases retained so existing className references still resolve.
-        // serif used in a couple of places — alias to display.
-        serif: ['var(--font-fraunces)', 'Georgia', 'serif'],
+        display: ['var(--font-cormorant)', 'Georgia', 'serif'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        // Alias hérités : une seule déco (Cormorant), labels/prix en Inter.
+        serif: ['var(--font-cormorant)', 'Georgia', 'serif'],
+        mono: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       screens: {
         md: '768px',

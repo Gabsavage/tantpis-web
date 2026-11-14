@@ -5,8 +5,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { useCart } from '@/lib/cart-store';
+import { useUI } from '@/lib/ui-store';
 import Logo from './Logo';
 import MobileDrawer from './MobileDrawer';
+import { MARQUEE_HEIGHT } from './MarqueeTop';
 
 const DESKTOP_LINKS = [
   { href: '/produit/la-grip-sock', label: 'La collection' },
@@ -16,33 +18,53 @@ const DESKTOP_LINKS = [
 export default function Header() {
   const pathname = usePathname();
   const isHome = pathname === '/';
-  const [scrolled, setScrolled] = useState(false);
   const [hydrated, setHydrated] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  // Sur la home, en haut, le header est translucide au-dessus de la vidéo
+  // (contenu clair) ; une fois scrollé il passe en barre crème (sous le
+  // marquee qui apparaît). Ailleurs : barre crème, toujours.
+  const [atTop, setAtTop] = useState(isHome);
   const count = useCart((s) => s.items.reduce((n, i) => n + i.quantity, 0));
+  const openCart = useUI((s) => s.openCart);
+  // Le header se cale sous le ticker quand celui-ci est visible.
+  const marqueeShown = useUI((s) => s.marqueeShown);
 
   useEffect(() => {
     setHydrated(true);
-    const onScroll = () => setScrolled(window.scrollY > 24);
+  }, []);
+
+  useEffect(() => {
+    if (!isHome) {
+      setAtTop(false);
+      return;
+    }
+    const onScroll = () => setAtTop(window.scrollY < window.innerHeight * 0.34);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [isHome]);
 
   // Close drawer on route change
   useEffect(() => {
     setDrawerOpen(false);
   }, [pathname]);
 
-  const transparent = isHome && !scrolled && !drawerOpen;
+  // Contenu clair quand le header est translucide sur la vidéo sombre.
+  const light = isHome && atTop && !drawerOpen;
 
   return (
     <>
-      <header
+      <motion.header
+        initial={{ opacity: isHome ? 0 : 1, y: isHome ? 0 : MARQUEE_HEIGHT }}
+        animate={{ opacity: 1, y: marqueeShown ? MARQUEE_HEIGHT : 0 }}
+        transition={{
+          opacity: { duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: isHome ? 0.15 : 0 },
+          y: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+        }}
         className={[
           'fixed inset-x-0 top-0 z-50 transition-colors duration-500',
-          transparent
-            ? 'bg-transparent'
+          light
+            ? 'bg-ink/10 backdrop-blur-sm'
             : 'bg-cream/90 backdrop-blur-md border-b border-ink/10',
         ].join(' ')}
       >
@@ -57,7 +79,7 @@ export default function Header() {
               aria-expanded={drawerOpen}
               className="relative inline-flex h-9 w-9 items-center justify-center md:hidden"
             >
-              <Burger open={drawerOpen} />
+              <Burger open={drawerOpen} light={light} />
             </button>
 
             {/* Desktop nav */}
@@ -72,10 +94,14 @@ export default function Header() {
                     key={l.href}
                     href={l.href}
                     className={[
-                      'text-sm transition-colors',
-                      active
-                        ? 'text-ink'
-                        : 'text-ink/70 hover:text-ink',
+                      'font-sans text-[11px] font-medium uppercase tracking-[0.16em] transition-colors',
+                      light
+                        ? active
+                          ? 'text-cream'
+                          : 'text-cream/70 hover:text-cream'
+                        : active
+                          ? 'text-ink'
+                          : 'text-tabac hover:text-terra',
                     ].join(' ')}
                   >
                     {l.label}
@@ -87,15 +113,18 @@ export default function Header() {
 
           {/* CENTER — logo */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-            <Logo className="text-[1.35rem] md:text-[1.6rem] text-ink" />
+            <Logo
+              className={`text-[1.35rem] md:text-[1.6rem] transition-colors duration-500 ${light ? 'text-cream' : 'text-ink'}`}
+            />
           </div>
 
           {/* RIGHT — cart */}
           <div className="ml-auto flex items-center">
-            <Link
-              href="/panier"
-              aria-label={`Panier (${hydrated ? count : 0} article${count > 1 ? 's' : ''})`}
-              className="group relative inline-flex items-center gap-2 px-2 py-2 text-[0.78rem] uppercase tracking-[0.18em]"
+            <button
+              type="button"
+              onClick={openCart}
+              aria-label={`Ouvrir le panier (${hydrated ? count : 0} article${count > 1 ? 's' : ''})`}
+              className={`group relative inline-flex items-center gap-2 px-2 py-2 font-sans text-[11px] font-medium uppercase tracking-[0.16em] transition-colors ${light ? 'text-cream hover:text-cream/70' : 'text-ink hover:text-terra'}`}
             >
               <span className="hidden md:inline">Panier</span>
               <span
@@ -116,24 +145,25 @@ export default function Header() {
                   <path d="M9 7a3 3 0 0 1 6 0" />
                 </svg>
                 {hydrated && count > 0 && (
-                  <span className="absolute -right-2 -top-2 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-rouge px-1 text-[0.6rem] font-normal not-italic text-cream">
+                  <span className="absolute -right-2 -top-2 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-terra px-1 text-[0.6rem] font-medium not-italic text-cream">
                     {count}
                   </span>
                 )}
               </span>
-            </Link>
+            </button>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       <MobileDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
     </>
   );
 }
 
-function Burger({ open }: { open: boolean }) {
+function Burger({ open, light }: { open: boolean; light: boolean }) {
   // Two-line "hamburger" that morphs into × on open. Cleaner & more editorial
   // than a 3-line classic burger.
+  const bar = `absolute left-0 block h-px w-full ${light ? 'bg-cream' : 'bg-ink'}`;
   return (
     <span aria-hidden className="relative block h-3 w-5">
       <motion.span
@@ -142,7 +172,7 @@ function Burger({ open }: { open: boolean }) {
           y: open ? 5 : 0,
         }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-0 top-0 block h-px w-full bg-ink"
+        className={`${bar} top-0`}
         style={{ transformOrigin: 'center' }}
       />
       <motion.span
@@ -151,7 +181,7 @@ function Burger({ open }: { open: boolean }) {
           y: open ? -5 : 0,
         }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute bottom-0 left-0 block h-px w-full bg-ink"
+        className={`${bar} bottom-0`}
         style={{ transformOrigin: 'center' }}
       />
     </span>

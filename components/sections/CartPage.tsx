@@ -118,7 +118,7 @@ function EmptyCart({ reduced }: { reduced: boolean }) {
       className="mx-auto flex max-w-md flex-col items-center py-20 text-center md:py-28"
     >
       <p className="font-display italic text-6xl text-ink md:text-7xl">
-        Vide<span aria-hidden>.👄</span>
+        Vide<span aria-hidden className="text-terra">.</span>
       </p>
       <p className="mt-6 font-mono text-[0.72rem] uppercase tracking-[0.22em] text-ink/65">
         Tant pis — on en a d&apos;autres.
@@ -354,7 +354,7 @@ function Summary({
           <dt className="text-ink/75">Livraison</dt>
           <dd className={freeShipping ? 'text-rouge' : 'text-ink'}>
             {freeShipping ? (
-              <>Offerte <span aria-hidden>👄</span></>
+              <>Offerte</>
             ) : (
               <AnimatedPrice value={shipping} alwaysShowDecimals />
             )}

@@ -343,7 +343,7 @@ function AtcButton({
             className="font-mono inline-flex items-center gap-3 text-[0.78rem] uppercase tracking-[0.22em]"
           >
             <Check />
-            Dans le panier · merci 👄
+            Dans le panier · merci
           </motion.span>
         ) : (
           <motion.span

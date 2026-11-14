@@ -81,7 +81,7 @@ export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
                     <Link
                       href={l.href}
                       onClick={onClose}
-                      className="font-display italic block text-3xl text-ink transition-colors hover:text-rouge"
+                      className="font-display block text-3xl text-ink transition-colors hover:text-terra"
                     >
                       {l.label}
                     </Link>
@@ -91,10 +91,10 @@ export default function MobileDrawer({ open, onClose }: MobileDrawerProps) {
             </nav>
 
             <div className="mt-auto pt-10">
-              <p className="font-display italic text-lg text-ink">
-                Tant Pis<span aria-hidden>👄</span>
+              <p className="font-display text-lg text-ink">
+                Tant Pis<span aria-hidden className="text-terra">.</span>
               </p>
-              <p className="mt-2 text-xs leading-relaxed text-brown/70">
+              <p className="mt-2 text-xs leading-relaxed text-tabac">
                 Grip socks pour le Pilates. Fait à Paris.
               </p>
             </div>

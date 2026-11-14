@@ -1,6 +1,7 @@
 import { products } from '@/lib/products';
 import PlaceholderImage from '@/components/PlaceholderImage';
 import HomeHero from '@/components/sections/HomeHero';
+import HomeFounderNote from '@/components/sections/HomeFounderNote';
 import HomeProduct from '@/components/sections/HomeProduct';
 import HomeStory from '@/components/sections/HomeStory';
 import HomeReviews from '@/components/sections/HomeReviews';
@@ -34,21 +35,9 @@ export default async function HomePage() {
 
   return (
     <>
-      <HomeHero
-        heroImage={
-          /* IMG SLOT: /public/images/hero-flatlay.jpg — 1920×1080, flat lay terracotta */
-          <PlaceholderImage
-            src="/images/hero-flatlay.jpg"
-            alt="Tant Pis. — flat lay des grip socks coloris terracotta"
-            aspect="16/9"
-            fallbackColor="#C2604A33"
-            width={1920}
-            height={1080}
-            priority
-            sizes="100vw"
-          />
-        }
-      />
+      <HomeHero />
+
+      <HomeFounderNote />
 
       <HomeProduct product={product} images={productImages} />
 

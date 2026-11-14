@@ -1,35 +1,27 @@
 import type { Metadata } from 'next';
-import { Fraunces, Instrument_Sans, JetBrains_Mono } from 'next/font/google';
+import { Cormorant_Garamond, Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CustomCursor from '@/components/CustomCursor';
 import MarqueeTop from '@/components/MarqueeTop';
+import CartDrawer from '@/components/CartDrawer';
+import TopSpacer from '@/components/TopSpacer';
 
-// Display: Fraunces — variable, italic, characterful — replaces Cormorant Garamond.
-// Loaded as variable (no static `weight`) so we can use SOFT + opsz axes for
-// optical-size aware italics.
-const fraunces = Fraunces({
+// Display : Cormorant Garamond — toujours italic, weight 500. L'unique déco.
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
   style: ['italic', 'normal'],
-  axes: ['SOFT', 'opsz'],
-  variable: '--font-fraunces',
+  weight: ['400', '500'],
+  variable: '--font-cormorant',
   display: 'swap',
 });
 
-// Body: Instrument Sans — more character than DM Sans, less ubiquitous
-const instrument = Instrument_Sans({
+// Corps & labels : Inter — 400 (corps) et 500 (labels, caps, CTA).
+const inter = Inter({
   subsets: ['latin'],
   weight: ['400', '500'],
-  variable: '--font-instrument',
-  display: 'swap',
-});
-
-// Mono accent for prices / numbers / technical microcopy
-const mono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-mono',
+  variable: '--font-inter',
   display: 'swap',
 });
 
@@ -59,14 +51,16 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${fraunces.variable} ${instrument.variable} ${mono.variable}`}
+      className={`${cormorant.variable} ${inter.variable}`}
     >
       <body className="font-sans bg-cream text-ink min-h-screen flex flex-col">
         <CustomCursor />
         <MarqueeTop />
         <Header />
+        <TopSpacer />
         <main className="flex-1">{children}</main>
         <Footer />
+        <CartDrawer />
       </body>
     </html>
   );

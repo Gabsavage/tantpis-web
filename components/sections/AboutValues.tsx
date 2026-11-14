@@ -47,7 +47,7 @@ export default function AboutValues() {
           id="about-values"
           className="font-display italic mt-6 text-4xl leading-[1.02] tracking-tight text-ink md:text-6xl"
         >
-          Les réponses honnêtes<span aria-hidden>.👄</span>
+          Les réponses honnêtes<span aria-hidden className="text-terra">.</span>
         </h2>
 
         <dl className="mt-14 space-y-10 md:mt-20 md:space-y-14">

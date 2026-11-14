@@ -3,12 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --color-cream: #F4ECDC;
-  --color-rouge: #D63C5E;
-  --color-ink: #1A1612;
-  --color-brown: #3A2A1E;
-  /* Product variant colors (physical sock colorways) */
+  --color-cream: #F2E8DC;
   --color-terra: #C2604A;
+  --color-ink: #2A1810;
+  --color-tabac: #7A4F3A;
   --color-sage: #8A9E8C;
 }
 
@@ -42,20 +40,20 @@ body {
 }
 
 ::selection {
-  background-color: var(--color-rouge);
+  background-color: var(--color-terra);
   color: var(--color-cream);
 }
 
-/* Editorial italic helper — pointing to Fraunces now */
+/* Helper signature — Cormorant Garamond, toujours italic, weight 500. */
 .font-display {
-  font-family: var(--font-fraunces), Georgia, serif;
+  font-family: var(--font-cormorant), Georgia, serif;
   font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.015em;
+  font-weight: 500;
+  letter-spacing: -0.005em;
 }
 
 .hairline {
-  border-top: 1px solid rgba(26, 22, 18, 0.12);
+  border-top: 1px solid rgba(42, 24, 16, 0.18);
 }
 
 .img-zoom {
@@ -73,4 +71,18 @@ body {
   display: inline-flex;
   white-space: nowrap;
   will-change: transform;
+}
+
+/* Le bisou du logo — au survol du wordmark, le point se mue en lèvres (morph
+   géré par transitions Tailwind) puis un petit cœur s'envole. Easing doux,
+   durée > 0.4s (DESIGN_SYSTEM). Le cœur ne s'anime pas si reduced-motion. */
+@keyframes kiss-emit {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.3) rotate(14deg); }
+  25% { opacity: 1; transform: translate(0.05em, -0.16em) scale(1) rotate(14deg); }
+  100% { opacity: 0; transform: translate(0.26em, -0.52em) scale(0.55) rotate(14deg); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .group:hover .bisou-kiss {
+    animation: kiss-emit 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.18s both;
+  }
 }

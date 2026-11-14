@@ -34,7 +34,7 @@ export default function AboutFounder({ image }: AboutFounderProps) {
             id="about-brand"
             className="font-display italic mt-4 text-4xl leading-[1.02] tracking-tight text-ink md:text-5xl"
           >
-            On en avait marre des chaussettes qui glissent<span aria-hidden>.👄</span>
+            On en avait marre des chaussettes qui glissent<span aria-hidden className="text-terra">.</span>
           </h2>
 
           <div className="mt-8 space-y-6 text-[0.98rem] leading-[1.85] text-ink/85">

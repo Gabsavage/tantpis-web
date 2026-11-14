@@ -23,7 +23,7 @@ export default function AboutFinalCTA() {
           className="font-display italic mt-6 text-[12vw] leading-[0.95] tracking-[-0.02em] md:text-[6.5vw]"
         >
           Allez, tu prends<br />
-          une paire<span aria-hidden>.👄</span>
+          une paire<span aria-hidden>.</span>
         </h2>
 
         <Link
